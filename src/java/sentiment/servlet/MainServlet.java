@@ -6,17 +6,27 @@ package sentiment.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import sentiment.program.TweetAnalyzer;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sentiment.program.MyTweet;
 
 /**
  *
  * @author ize
  */
 public class MainServlet extends HttpServlet {
-
+    private static List <MyTweet> positifTweet = null;
+    private static List <MyTweet> negatifTweet = null;
+    private static List <MyTweet> netralTweet = null;
+    
+    private void Analyze (String Tweet, String Positif, String Negatif) throws Exception{
+        TweetAnalyzer TA = new TweetAnalyzer(Tweet, Positif, Negatif);
+        TA.divideTweet(positifTweet, negatifTweet, netralTweet);
+    }
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
