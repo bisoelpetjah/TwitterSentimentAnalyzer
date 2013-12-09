@@ -13,7 +13,6 @@ import java.util.Random;
  */
 public class MyTweet {
     private static Random r = new Random();
-    private static String[] sample = {"this is a sample tweet negatif","this is a sample tweet positif", "this is a sample tweet positif negatif"};
     private Status content = null;
 
     //TODO this should be fixed and integrate with okihita
