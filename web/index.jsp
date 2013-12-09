@@ -14,13 +14,15 @@
     </head>
     <body>
         <div id="container">
-            <br /><br /><br /><br />
+            <br />
             <form id="mainform">
-                <input type="text" name="query" placeholder="Teks pencarian" />
-                <input type="text" name="positif" placeholder="Positif" />
-                <input type="text" name="negatif" placeholder="Negatif" />
+                <input type="text" name="query" placeholder="Masukkan keyword tweet" /><br />
+                <input type="text" name="positif" placeholder="Masukkan keyword tweet Positif" /><br />
+                <input type="text" name="negatif" placeholder="Masukkan keyword tweet Negatif" /><br />
                 <input type="submit" value="Cari" />
             </form>
+            <br /><br /><br />
+            <div id="result"></div>
         </div>
     </body>
 </html>

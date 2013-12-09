@@ -1,16 +1,29 @@
 #container {
-    position:relative;
-    width:100%;
-    height:100%;
+    position:absolute;
+    border:1px solid green;
+    border-radius:3px;
+    left:50%;
+    top:50%;
+    width:800px;
+    height:500px;
+    margin-left:-400px;
+    margin-top:-275px;
+    overflow-x:hidden;
+    overflow-y:scroll;
 }
 
 #mainform {
     position:relative;
-    width:800px;
-    height:600px;
     margin:auto;
 }
 
-input [type=text] {
-    margin:auto;
+input[type=text] {
+    width:740px;
+    margin:10px 20px;
+}
+
+input[type=submit] {
+    width:100px;
+    margin:30px;
+    float:right;
 }
