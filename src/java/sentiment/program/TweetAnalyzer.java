@@ -4,9 +4,9 @@
  */
 package sentiment.program;
 
-import twitter4j.Status;
 import java.util.ArrayList;
 import java.util.List;
+import twitter4j.Status;
 /**
  *
  * @author Kevin

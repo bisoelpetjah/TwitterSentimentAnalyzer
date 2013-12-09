@@ -4,8 +4,8 @@
  */
 package sentiment.program;
 
-import twitter4j.Status;
 import java.util.Random;
+import twitter4j.Status;
 
 /**
  *

@@ -6,26 +6,33 @@ package sentiment.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
-import sentiment.program.TweetAnalyzer;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import sentiment.program.MyTweet;
+import sentiment.program.TweetAnalyzer;
 
 /**
  *
  * @author ize
  */
 public class MainServlet extends HttpServlet {
-    private static List <MyTweet> positifTweet = null;
-    private static List <MyTweet> negatifTweet = null;
-    private static List <MyTweet> netralTweet = null;
+    private static List <MyTweet> positifTweet = new ArrayList<MyTweet>();
+    private static List <MyTweet> negatifTweet = new ArrayList<MyTweet>();
+    private static List <MyTweet> netralTweet = new ArrayList<MyTweet>();
     
-    private void Analyze (String Tweet, String Positif, String Negatif) throws Exception{
-        TweetAnalyzer TA = new TweetAnalyzer(Tweet, Positif, Negatif);
-        TA.divideTweet(positifTweet, negatifTweet, netralTweet);
+    private void Analyze (String Tweet, String Positif, String Negatif){
+        try {
+            TweetAnalyzer TA = new TweetAnalyzer(Tweet, Positif, Negatif);
+            TA.divideTweet(positifTweet, negatifTweet, netralTweet);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     /**
      * Processes requests for both HTTP
@@ -40,17 +47,27 @@ public class MainServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        JSONObject json = new JSONObject();
+        Analyze(request.getParameter("tweet"), request.getParameter("positif"), request.getParameter("negatif"));
+        List<String> positif = new ArrayList<String>();
+        List<String> negatif = new ArrayList<String>();
+        List<String> netral = new ArrayList<String>();
+        for (MyTweet mytweet : positifTweet) {
+            positif.add(mytweet.getTweet());
+        }
+        for (MyTweet mytweet : negatifTweet) {
+            negatif.add(mytweet.getTweet());
+        }
+        for (MyTweet mytweet : netralTweet) {
+            netral.add(mytweet.getTweet());
+        }
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MainServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet MainServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            json.put("status", "success");
+            json.put("positif", new JSONArray(positif).toString());
+            json.put("negatif", new JSONArray(negatif).toString());
+            json.put("netral", new JSONArray(netral).toString());
+            out.println(json.toString());
         } finally {            
             out.close();
         }

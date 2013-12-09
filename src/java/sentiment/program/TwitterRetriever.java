@@ -27,10 +27,14 @@ public class TwitterRetriever {
         String consumer_key_secret = null;
         try {
             Class c = Class.forName("Config");
-            consumer_key = (String)c.getDeclaredField("CONSUMER_KEY").get(null);
-            access_token= (String)c.getDeclaredField("ACCESS_TOKEN").get(null);
-            consumer_key_secret = (String)c.getDeclaredField("CONSUMER_KEY_SECRET").get(null);
-            access_token_secret= (String)c.getDeclaredField("ACCESS_TOKEN_SECRET").get(null);
+            //consumer_key = (String)c.getDeclaredField("CONSUMER_KEY").get(null);
+            consumer_key = "rD9lVyShUOrCYFTTi80Tww";
+            //access_token= (String)c.getDeclaredField("ACCESS_TOKEN").get(null);
+            access_token = "77715499-mwDGzpmweDaNfdFgtLwoJGvkrh0dTfB78nNXT4eP3";
+            //consumer_key_secret = (String)c.getDeclaredField("CONSUMER_KEY_SECRET").get(null);
+            consumer_key_secret = "fjkC2VQDFEKCULtmiu895kIgrRfO0Btf5pcBKhq3zkY";
+            //access_token_secret= (String)c.getDeclaredField("ACCESS_TOKEN_SECRET").get(null);
+            access_token_secret = "kEKurInWQGKWs7xKtjAMM2aUSTBNjEkdiTJq0Vde6u5Vs";
         } catch (Exception e) {
             consumer_key = System.getenv("CONSUMER_KEY");
             access_token= System.getenv("ACCESS_TOKEN");
